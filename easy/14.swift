@@ -2,25 +2,26 @@ class Solution {
     func longestCommonPrefix(_ strs: [String]) -> String {
         var ans = strs.first!
         for i in 1 ..< strs.count {
-            let str = strs[i]
-            ans = commonPrefix(ans,str)
-            if ans.count == 0 { break }
+            ans = commonPrefix(ans, strs[i])
+            if ans.count == 0 {
+                break
+            }
         }
         return ans
     }
     func commonPrefix(_ str1: String, _ str2: String) -> String {
-        var ans = ""
-        var i = 0
-        let arr1 = str1.map{$0}
-        let arr2 = str2.map{$0}
+        var arr1 = Array(str1)
+        var arr2 = Array(str2)
+        var ans:[Character] = []
+        var i = 0 
         while i < arr1.count && i < arr2.count {
             if arr1[i] == arr2[i] {
-                ans += String(arr1[i])
+                ans.append(arr1[i])
+                i = i + 1
             }else {
                 break
             }
-            i += 1
         }
-        return ans
+        return String(ans)
     }
 }
